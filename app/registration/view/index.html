@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="Auth">
+  <head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-social/bootstrap-social.css">
+    <link href='/node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet'>
+	  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/views/registration/public/style.css">
+    <!--<script src="script/controller.js"></script> -->
+  </head>
+  <body>
+  	<div class="container justify-content-center" ng-controller="ctrlForm">
+  		<div class="jumbotron" style="text-align: center">
+  			<h2>Registration</h2>
+  		</div>
+      <div class="row justify-content-center" ng-controller="ctrlDrop">
+        <div class="col-md-6 form-group">
+          <img id="preview" src="" height="200">
+        </div>
+        <div class="col-md-6 files" id="drop-zone">
+          <label>Upload your photo</label>
+          <input type="file" class="form-control" multiple="" ng-model="confirmed" onchange="angular.element(this).scope().previewFile()">
+        </div>
+        <div class="alert alert-warning alert-danger fade" id="img-alert" role="alert">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Error!</strong><span id="alert">Wrong type of file</span>
+        </div>
+      </div>
+  		<form class="form-signing" name="form" ng-controller="ctrlForm">
+  			<input type="email" ng-model="user.email" class="form-control"  placeholder="Email" required="" autofocus="">
+        <input type="name" ng-model="user.first_name" class="form-control" placeholder="Name" required="" autofocus="">
+        <input type="name" ng-model="user.surname" class="form-control" placeholder="Surname" required="" autofocus="">
+  			<input type="password" ng-model="user.password" class="form-control" placeholder="Password" required="">
+  			<button  class="btn btn-lg btn-primary btn-block" ng-click="registration()">Registration</button>
+  		</form>
+       <div class="row justify-content-center">
+        <button class="btn btn-block btn-social btn-facebook" ng-click="facebook()" >
+          <span class="fa fa-facebook"></span> Sing in with Facebook
+        </button>
+       </div>
+        <div class="row justify-content-center">
+          <button class="btn btn-block btn-social btn-twitter" ng-click="twitter()">
+            <span class="fa fa-twitter"></span>Twitter
+          </button>
+        </div>
+        <div class="row justify-content-center">
+          <button class="btn btn-block btn-social btn-vk" ng-click="vkontakte()">
+            <span class="fa fa-vk"></span>VK
+          </button>
+        </div>
+      <div class="row justify-content-center">
+        <div class="alert alert-warning alert-danger fade" role="alert">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Error!</strong><span id="alert"></span>
+        </div>
+      </div>
+  	</div>
+  <script src='node_modules/jquery/jquery.min.js'></script>
+	<script src='node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'></script>
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular/angular-cookies.js"></script>
+  <script src="/node_modules/angular/angular-route.js"></script>
+  <script src="/controllers/ctrlDrop.js"></script>
+  <script src="/views/registration/public/forms.js"></script>
+  </body>
+</html>

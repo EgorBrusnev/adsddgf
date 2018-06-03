@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row" ng-controller="ctrlDrop">
+      <div class="col-md-6 col-md-offset-1">
+          <div class="upload-drop-zone" id="drop-zone">
+                <label>Choose file or drop here<input type="file" ng-model="confirmed" onchange="angular.element(this).scope().previewFile()" style="opacity: 0;" required="required">{{confirmed}}</label>
+          </div>
+      </div>
+      <div class="col-md-4 col-md-offset-1">
+        <img src="" height="200" alt="Preview">
+      </div>
+  </div>
+</div>
+<div class="jumbotron container" ng-controller="ctrlAdd">
+	<form class="form-group add_blog" name="form">
+		<input class="form-control" ng-model="blog.name">
+		<input class="form-control" ng-model="blog.tag">
+		<textarea class="form-control" ng-model="blog.content"></textarea>
+		<button class="btn btn-primary" ng-click="add()">Enter</button>
+	</form>
+</div>
+<div id="success" style="visibility: hidden;">
+  <p>Successfully added </p><a href="/blog/myblogs">Go to my entries</a>
+</div>

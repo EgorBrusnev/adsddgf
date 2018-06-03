@@ -1,0 +1,26 @@
+<div id="navbar" class="navbar-collapse collapse" ng-controller="ctrlForm">
+	<form class="form-inline " name="form">
+		<div class="form-group">
+			<div class="alert alert-warning alert-danger fade" role="alert">
+	          <button type="button" class="close" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	          </button>
+	          <strong>Error!</strong><span id="alert"></span>
+	        </div>
+		</div>
+		<div class="form-group">
+			<input class="form-control mr-sm-2" placeholder="Email" type="text" ng-model="user.email">
+		</div>
+		<div class="form-group">
+			<input class="form-control mr-sm-2" placeholder="password" type="password" ng-model="user.password">
+		</div>
+		<div class="form-group">
+			<button class="btn btn-success mr-sm-2" ng-click="submit()">Sign in</button>
+			<span class="mr-sm-2">or</span><a href="/registration" target="_self">Registry</a>
+		</div>
+	</form>
+</div>
+
+
+
+

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="Account">
+  <head>
+    <meta charset="utf-8">
+    <title>Your account</title>
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-social/bootstrap-social.css">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/views/user/account/public/style.css">
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        menubar: 'edit view'
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" target="_self" class="navbar-brand">Itransition</a>
+        </div>
+      </div>
+    </nav>
+    <div class="jumbotron" style="text-align: center">
+      <h2>Add blog</h2>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center" ng-controller="ctrlDrop">
+        <div class="col-md-6 form-group">
+          <img id="preview" src="" height="200">
+        </div>
+        <div class="col-md-6 files" id="drop-zone">
+          <label>Upload your photo</label>
+          <input type="file" class="form-control" multiple="" ng-model="confirmed" onchange="angular.element(this).scope().previewFile()">
+        </div>
+        <div class="alert alert-warning alert-danger fade" id="img-alert" role="alert">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Error!</strong><span id="alert">Wrong type of file</span>
+        </div>
+      </div>
+    </div>
+      <div class="jumbotron container" ng-controller="ctrlAdd">
+          <form class="form-group add_blog" name="form">
+            <input class="form-control" ng-model="blog.name" placeholder="Blog name">
+            <input class="form-control" ng-model="blog.tag" placeholder="Blog theme">
+            <textarea id="mytextarea">Hello, World!</textarea>
+            <button class="btn btn-primary" ng-click="add()">Enter</button>
+          </form>
+        </div>
+        <div id="success" style="visibility: hidden;">
+          <p>Successfully added </p><a href="/blog/myblogs">Go to my entries</a>
+        </div>
+      </div>
+    <script src='/node_modules/jquery/jquery.min.js'></script>   
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular/angular-route.js"></script>
+    <script src="/node_modules/angular/angular-cookies.js"></script>
+    <script src="/node_modules/dropzone/dropzone.js"></script>
+    <script src="/controllers/ctrlDrop.js"></script>
+    <script src="/views/user/account/public/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+doctype html
+html(lang='en', ng-app='Account')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Blog
+    link(href='/node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/views/user/account/public/style.css')
+  body
+    navbar
+    .container.marketing.mt-5
+      // Three columns of text below the carousel
+      .row
+       -each blog in blogs
+        .col-lg-4
+          img.rounded-circle(src='#{blog.image}', alt='', width='140', height='140')
+          h2 #{blog.name}
+          p
+            !{blog.content.substr(0,300)} ...
+          p
+            a.btn.btn-secondary(href='/blog/update?id=#{blog.post_id}' target='_self', role='button') Edit »
+    script(src='/node_modules/jquery/jquery.min.js')
+    script(src='/node_modules/angular/angular.js')
+    script(src='/node_modules/angular/angular-route.js')
+    script(src='/node_modules/angular/angular-cookies.js')
+    script(src='/controllers/ctrlNav.js')
+    script(src='/node_modules/dropzone/dropzone.js')
+    script(src='/controllers/ctrlDrop.js')
+    script(src='/views/user/account/public/app.js')

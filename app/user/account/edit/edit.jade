@@ -1,0 +1,54 @@
+doctype html
+html(lang='en' ng-app='Edit')
+  head
+    meta(charset='utf-8')
+    title Your account
+    link(rel='stylesheet', href='/node_modules/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/node_modules/bootstrap-social/bootstrap-social.css')
+    link(href='/node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='http://getbootstrap.com/examples/signin/signin.css', rel='stylesheet')
+    link(rel='stylesheet', href='/views/user/account/delete/public/style.css')
+    script(src='https://cloud.tinymce.com/stable/tinymce.min.js')
+    script.
+      tinymce.init({
+      selector: '#mytextarea',
+      menubar: 'edit view'
+      });
+  body
+    nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+     .container
+       .navbar-header
+         a.navbar-brand(href='/', target='_self') Itransition
+
+    .jumbotron(style='text-align: center')
+      h2 Add blog
+    .container
+      .row.justify-content-center(ng-controller='ctrlDrop')
+        .col-md-6.form-group
+          img#preview(src='#{blog.image}', height='200')
+        #drop-zone.col-md-6.files
+          label Upload your photo
+          input.form-control(type='file', multiple='', ng-model='confirmed', onchange='angular.element(this).scope().previewFile()')
+        #img-alert.alert.alert-warning.alert-danger.fade(role='alert')
+          button.close(type='button', aria-label='Close')
+            span(aria-hidden='true') ×
+          strong Error!
+          span#alert Wrong type of file
+    .jumbotron.container(ng-controller='ctrlEdit', ng-init="getId('#{blog.post_id}','#{blog.name}','#{blog.tag}')")
+      form.form-group.add_blog(name='form')
+        input.form-control(ng-model='blog.name', type='text', value='#{blog.name}' placeholder='Blog Name')
+        input.form-control(ng-model='blog.tag', type='text', value='#{blog.tag}' placeholder='Blog theme')
+        textarea#mytextarea(placeholder='abc')
+         | #{blog.content}
+        button.btn.btn-primary(ng-click='update()') Enter
+    #success(style='visibility: hidden;')
+      p Successfully added 
+      a(href='/blog/myblogs') Go to my entries
+    script(src='/node_modules/jquery/jquery.min.js')
+    script(src='/node_modules/angular/angular.js')
+    script(src='/node_modules/angular/angular-route.js')
+    script(src='/node_modules/angular/angular-cookies.js')
+    script(src='/controllers/ctrlNav.js')
+    script(src='/node_modules/dropzone/dropzone.js')
+    script(src='/controllers/ctrlDrop.js')
+    script(src='/views/user/account/edit/public/ctrlEdit.js')

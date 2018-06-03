@@ -1,0 +1,87 @@
+doctype html
+html(lang='en', ng-app='Blog')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Blog
+    link(rel='stylesheet', href='/node_modules/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/node_modules/bootstrap-social/bootstrap-social.css')
+    link(href='/node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/node_modules/bootstrap-star-rating/css/star-rating.min.css', rel='stylesheet')
+    link(href='/node_modules/themes/krajee-fa/theme.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/views/blog/public/style.css')
+  body(ng-controller="ctrlBlog" ng-init="getRating(#{blog.rate})")
+    navbar
+    // Page Content
+    .container
+      .row
+        // Post Content Column
+        .col-lg-8(ng-controller='ctrlComments')
+          // Title
+          h1.mt-4 #{blog.name}
+          // Author
+          p.lead
+            | by 
+            a(href='#') #{blog.user_name}
+          hr
+          // Date/Time
+          p Posted on #{blog.date.toDateString()} #{blog.date.toLocaleTimeString()}
+          hr
+          // Preview Image
+          img.img-fluid.rounded(src=blog.image, alt='')
+          hr
+          // Post Content
+          div             
+            !{blog.content}
+
+          hr
+          input#input-id.hide(type='number', data-size='xs' step='0.1')
+          hr
+          // Comments Form
+          .card.my-4
+            h5.card-header Leave a Comment:
+            .card-body
+              form
+                .form-group
+                  textarea.form-control(rows='3' ng-model="comment")
+                button.btn.btn-primary(type='submit' ng-click="send_comment()") Submit
+          // Single Comment
+          .comments
+           -each comment in comments
+            .media.mb-4
+             img.d-flex.mr-3.rounded-circle(src='http://placehold.it/50x50', alt='')
+             .media-body
+               h5.mt-0 #{comment.name}
+                small.text-muted  #{comment.date.toLocaleString()}
+               |               #{comment.content}
+        // Sidebar Widgets Column
+        .col-md-4
+          // Search Widget
+          .card.my-4
+            h5.card-header Search
+            .card-body
+              .input-group
+                input.form-control(type='text', placeholder='Search for...')
+                span.input-group-btn
+                  button.btn.btn-secondary(type='button') Go!
+      // /.row
+    // /.container
+    // Footer
+    footer.py-5.bg-dark
+      .container
+        p.m-0.text-center.text-white Copyright © Your Website 2017
+      // /.container
+    script(src='/node_modules/jquery/jquery.min.js')
+    script(src='/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    script(src='node_modules/bootstrap-star-rating/js/star-rating.js')
+    script(src='node_modules/bootstrap-star-rating/themes/krajee-fa/theme.js')
+    script(src='/node_modules/socket.io-client/dist/socket.io.js')
+    script(src='/node_modules/angular/angular.js')
+    script(src='/node_modules/angular/angular-route.js')
+    script(src='/node_modules/angular/angular-cookies.js')
+    script(src='/controllers/ctrlNav.js')
+    script(src='controllers/auth.js')
+    script(src='/controllers/BlogController.js')
+    script(src='views/main/public/rating.js')

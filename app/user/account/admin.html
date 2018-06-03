@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" ng-app="Account">
+  <head>
+    <meta charset="utf-8">
+    <title>Your account</title>
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-social/bootstrap-social.css">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/views/user/account/public/style.css">
+  </head>
+  <body>
+    <navbar></navbar>
+<div class="container" ng-controller="ctrlName">
+  <div class="row justify-content-center">
+    <div class="card mb-3" style="width: 20rem;">
+      <img class="card-img-top img-fluid" src="{{user.image}}" alt="">
+      <div class="card-body">
+        <h4 class="card-title">{{user.name}} {{user.surname}}</h4>
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+        <div id="menu">
+            <a href="/user/update" id="btnCon" class="text-white btn btn-lg btn-warning fa fa-save " accesskey="c" ><br>Update profile</a>
+            <a href="/blog/add" id="btnCon" class="text-white btn btn-lg btn-success fa fa-save " accesskey="c" ><br>Add blog</a>
+            <a href="/blog/myblogs" type="reset" id="btnReset" class="text-white btn btn-lg btn-primary fa fa-refresh" accesskey="n"><br>View blogs</a>
+            <a href="/blog/update" id="btnEdit" class="text-white btn btn-lg btn-warning fa fa-pencil" accesskey="a" ><br>Update blog</a>
+            <a href="/blog/delete" id="btnExc" class="text-white btn btn-lg btn-danger fa fa-trash" accesskey="x" ><br>Delete blog</a>
+        </div>
+  </div>
+</div>
+
+
+
+    <script src='node_modules/jquery/jquery.min.js'></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular/angular-route.js"></script>
+    <script src="/node_modules/angular/angular-cookies.js"></script>
+    <script src="/controllers/ProfileController.js"></script>
+  </body>
+</html>

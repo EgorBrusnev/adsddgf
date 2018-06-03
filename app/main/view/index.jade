@@ -1,0 +1,67 @@
+doctype html
+html(lang='en', ng-app='Main')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Blog
+    link(href='/node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/node_modules/bootstrap-star-rating/css/star-rating.min.css', rel='stylesheet')
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet")
+    //link(href='/node_modules/themes/krajee-fa/theme.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/views/main/public/style.css')
+  body(ng-controller='ctrlBlog' ng-init='getPages(#{totalPages})')
+    navbar
+    .container
+      .row
+        // Blog Entries Column
+        .col-md-8
+          h1.my-4
+            | #{title}
+          // Blog Post
+          -each blog in blogs
+           .card.mb-4
+            img.card-img-top(src= blog.image , alt='Card image cap')
+            .card-body
+              h2.card-title= blog.name
+              p.card-text  !{blog.content.substr(0,300)} ...
+              a.btn.btn-primary(href='/blog?id=#{blog.post_id}', target='_self') Read More →
+            .card-footer.text-muted
+              | Posted #{blog.date.toDateString()}
+          // Pagination
+          ul.pagination.justify-content-center.mb-4
+            li.page-item(ng-class="{'disabled': currentPage == 0}")
+              a.page-link(href='/?page={{currentPage}}', target='_self')  ←
+            li.page-item(ng-repeat='page in totalPages', ng-class="{'active': page == currentPage+1}")
+              a.page-link(href='/?page={{page}}', target='_self') {{page}}
+            li.page-item(ng-class="{'disabled': currentPage == pagesCount-1}")
+              a.page-link(href='/?page={{currentPage+2}}', target='_self') →
+        // Sidebar Widgets Column
+        .col-md-4
+          // Search Widget
+          .card.my-4
+            h5.card-header Search
+            .card-body
+              .input-group(ng-controller='ctrlSearch')
+                input.form-control(ng-model='request', type='text', placeholder='Search for...')
+                span.input-group-btn
+                  button.btn.btn-secondary(type='button' ng-click='search()') Go!
+      // /.row
+    // /.container
+    // Footer
+    footer.py-5.bg-dark
+      .container
+        p.m-0.text-center.text-white Copyright © Your Website 2017
+      // /.container
+    script(src='node_modules/jquery/jquery.min.js')
+    script(src='node_modules/angular/angular.js')
+    script(src='node_modules/angular/angular-cookies.js')
+    script(src='node_modules/angular/angular-route.js')
+    script(src='node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    script(src='node_modules/bootstrap-star-rating/js/star-rating.js')
+    script(src='node_modules/bootstrap-star-rating/themes/krajee-fa/theme.js')
+    script(src='controllers/ctrlNav.js')
+    script(src='controllers/searchController.js')
+    script(src='views/main/public/app.js')
+

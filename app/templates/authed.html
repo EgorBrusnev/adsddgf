@@ -1,0 +1,11 @@
+<div id="navbar" class="navbar-collapse collapse" ng-controller="ctrlUser">
+	<div class="form-inline">
+        <div class="form-group mr-sm-2">
+	        <img src="{{user.image}}" id="user-img" alt='' title="Karan Singh Sisodia" class="img card-img" style="max-height: 50px">
+        </div>
+		<p class="form-group mr-sm-2 navbar-brand">{{user.name}}</p>
+		<p class="form-group mr-sm-2 navbar-brand">{{user.surname}}</p>
+		<a href="/account" target="_self" class="form-group mr-sm-2">Личный кабинет</a>
+		<a class="form-group mr-sm-2" href="#" ng-click="exit()">Exit</a>
+	</div>
+</div>
